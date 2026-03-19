@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Pro | Gerenciador de Projetos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="/" class="flex items-center">
+                    <i class="fas fa-cubes text-blue-600 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold tracking-tight text-gray-800">Architect<span class="text-blue-600">Pro</span></span>
+                </a>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex items-center text-sm text-gray-500">
+                        <i class="fas fa-user-circle mr-2"></i>
+                        <span class="font-medium">{{ current_user.username }}</span>
+                    </div>
+
+                    <a href="/logout" class="text-gray-400 hover:text-red-600 transition-colors duration-200 flex items-center text-sm font-semibold">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Sair
+                    </a>
+
+                    {% if request.endpoint == 'index' %}
+                    <a href="/project/new" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition shadow-sm">
+                        <i class="fas fa-plus mr-2"></i> Novo
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-gray-900">Seus Projetos</h1>
+            <p class="mt-2 text-sm text-gray-600">Gerencie requisitos e exporte prompts para IAs.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for p in projects %}
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-200 overflow-hidden flex flex-col">
+                <div class="p-6 flex-grow">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                            Software
+                        </span>
+                        <span class="text-gray-400 text-xs italic">ID: #{{ p.id }}</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-2 truncate">{{ p.name }}</h2>
+                    <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                        {{ p.description or "Sem descrição disponível para este projeto." }}
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                    <div class="flex -space-x-2">
+                        <span class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-white text-[10px]" title="Web"><i class="fas fa-globe"></i></span>
+                        <span class="w-8 h-8 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-white text-[10px]" title="API"><i class="fas fa-code"></i></span>
+                        <span class="w-8 h-8 rounded-full bg-purple-500 border-2 border-white flex items-center justify-center text-white text-[10px]" title="Mobile"><i class="fas fa-mobile-alt"></i></span>
+                    </div>
+                    <a href="/project/{{p.id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm inline-flex items-center">
+                        Abrir <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-span-full py-20 text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                    <i class="fas fa-folder-open text-gray-400 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900">Nenhum projeto encontrado</h3>
+                <p class="text-gray-500">Comece criando seu primeiro projeto de software.</p>
+                <div class="mt-6">
+                    <a href="/project/new" class="text-blue-600 font-semibold hover:underline">
+                        + Criar projeto agora
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </main>
+
+    <footer class="mt-auto py-8 text-center text-gray-400 text-xs">
+        &copy; 2026 ArchitectPro - Ferramenta de Engenharia de Prompt
+    </footer>
+
+</body>
+</html>

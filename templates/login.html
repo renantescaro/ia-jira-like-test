@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | ArchitectPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-xl shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Entrar no ArchitectPro</h2>
+        <form method="POST">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Usuário</label>
+                <input type="text" name="username" class="w-full px-3 py-2 border rounded-lg focus:ring-blue-500" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+                <input type="password" name="password" class="w-full px-3 py-2 border rounded-lg focus:ring-blue-500" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">Entrar</button>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-600">Não tem conta? <a href="/register" class="text-blue-600 hover:underline">Registre-se</a></p>
+    </div>
+</body>
+</html>

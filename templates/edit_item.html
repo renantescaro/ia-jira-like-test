@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Requisito | ArchitectPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+    <div class="max-w-xl w-full bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Editar Requisito</h2>
+        <form method="POST" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tipo</label>
+                <select name="type" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg">
+                    <option value="web" {% if item.type == 'web' %}selected{% endif %}>Web</option>
+                    <option value="api" {% if item.type == 'api' %}selected{% endif %}>API</option>
+                    <option value="mobile" {% if item.type == 'mobile' %}selected{% endif %}>Mobile</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nome</label>
+                <input type="text" name="name" value="{{ item.name }}" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Requisitos</label>
+                <textarea name="requirements" rows="6" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg">{{ item.requirements }}</textarea>
+            </div>
+            <div class="flex space-x-3">
+                <button type="submit" class="flex-1 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700">Salvar Alterações</button>
+                <a href="/project/{{ project_id }}" class="flex-1 py-3 bg-gray-100 text-gray-600 font-bold rounded-lg text-center hover:bg-gray-200">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

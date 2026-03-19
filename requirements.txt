@@ -1,0 +1,5 @@
+flask
+sqlmodel
+pymysql
+flask-login
+cryptography
